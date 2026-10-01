@@ -4,8 +4,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axiosInstance";
-
-function AdminPage() {
+const AdminPage = () => {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
@@ -19,25 +18,20 @@ function AdminPage() {
       navigate("/");
     }
   };
-
   useEffect(() => {
     fetchUsers;
   }, []);
-
   return (
     <div className="home">
       <h2>Admin page입니다.</h2>
       <ul>
         {users.map((user) => (
-          <li>
-            <li key={user.id}>
-              {user.username}({user.role})
-            </li>
+          <li key={user.id}>
+            {user.username}({user.role})
           </li>
         ))}
       </ul>
     </div>
   );
-}
-
+};
 export default AdminPage;
