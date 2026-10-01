@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +19,10 @@ function LoginPage() {
       );
       alert("LogIn Success! Access Token : " + res.data.accessToken);
       navigate("/");
+      Cookies.set("accessToken", res.data.accessToken, {
+        expires: 0.021,
+        path: "/",
+      }); //추가
     } catch (err) {
       alert("LogIn Failed : " + (err.response?.data || err.message));
     }
